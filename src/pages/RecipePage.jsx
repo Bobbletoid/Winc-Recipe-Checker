@@ -163,22 +163,6 @@ export const RecipePage = ({ item, clickFn }) => {
                 <NutrientList totalNutrients={item.totalNutrients} />
               </Stack>
             </Flex>
-
-            <Button
-              position={{ base: "static", sm: "absolute" }}
-              bottom="0"
-              left="0"
-              m={{ base: "0", sm: "4" }}
-              onClick={() => {
-                clickFn(null);
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                });
-              }}
-            >
-              Back to overview
-            </Button>
           </Stack>
         </Stack>
       </Card.Body>
