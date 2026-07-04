@@ -26,9 +26,9 @@ export const RecipePage = ({ item, clickFn }) => {
       borderRadius="xl"
       transition="transform 0.15s ease"
       _light={{ bg: "blue.50", color: "black" }}
-      _dark={{ color: "dimgray" }}
+      _dark={{ color: "gainsboro" }}
     >
-      <Card.Body>
+      <Card.Body pb={{ base: "4", sm: "20" }}>
         <Stack direction="column" gap={{ base: 4, md: 8 }}>
           <Box
             flex="1"
@@ -59,40 +59,39 @@ export const RecipePage = ({ item, clickFn }) => {
               <Stack flex="1" gap="1">
                 <Text
                   fontWeight="bold"
-                  fontSize={{ base: "0.7em", md: "0.8em" }}
+                  fontSize="1.1em"
                   color="gray"
-                  _dark={{ color: "lightslategray" }}
                   mt="1em"
                 >
                   {item.mealType?.join(", ")?.toUpperCase()}
                 </Text>
 
-                <Heading fontSize={{ base: "1em", md: "1.2em" }}>
+                <Heading fontSize="1.1em">
                   {item.label}
                 </Heading>
 
                 {item.totalTime !== 0 && (
-                  <Text fontSize={{ base: "0.7em", md: "0.8em" }} mt="1em">
+                  <Text fontSize="1em" mt="1em">
                     Total cooking time:{" "}
                     <Strong>{item.totalTime} minutes</Strong>
                   </Text>
                 )}
 
-                <Text fontSize={{ base: "0.7em", md: "0.8em" }}>
+                <Text fontSize="1em">
                   Servings: <Strong>{item.yield}</Strong>
                 </Text>
                 <Text
                   fontWeight="bold"
-                  fontSize={{ base: "0.8em", md: "1em" }}
+                  fontSize="1em"
                   mt="1em"
                 >
                   Ingredients:
                 </Text>
-                <Stack spacing={1}>
+                <Stack gap="1">
                   {item?.ingredientLines?.map((ingredient, index) => (
                     <Text
                       key={index}
-                      fontSize={{ base: "0.7em", md: "0.8em" }}
+                      fontSize="1em"
                       lineHeight="1.1"
                     >
                       {ingredient}
@@ -104,7 +103,7 @@ export const RecipePage = ({ item, clickFn }) => {
 
             <Flex gap={2} wrap="wrap" direction="column" h="100%" w="50%">
               <Stack flex="1" gap="1">
-                <Text fontSize={{ base: "0.8em", md: "1em" }} mt="1em">
+                <Text fontSize="1em" mt="1em">
                   Health labels:
                 </Text>
                 <Wrap gap={2} wrap="wrap">
@@ -113,14 +112,13 @@ export const RecipePage = ({ item, clickFn }) => {
                       key={healthLabel}
                       bg="purple.200"
                       _dark={{ color: "black" }}
-                      fontSize={{ base: "0.3em", md: "0.5em" }}
                     >
                       {healthLabel}
                     </RecipeTag>
                   ))}
                 </Wrap>
 
-                <Text fontSize={{ base: "0.8em", md: "1em" }} mt="1em">
+                <Text fontSize="1em" mt="1em">
                   Diet labels:
                 </Text>
                 <Wrap gap={2} wrap="wrap">
@@ -129,14 +127,13 @@ export const RecipePage = ({ item, clickFn }) => {
                       key={dietLabel}
                       bg="green.300"
                       _dark={{ color: "black" }}
-                      fontSize={{ base: "0.3em", md: "0.5em" }}
                     >
                       {dietLabel}
                     </RecipeTag>
                   ))}
                 </Wrap>
 
-                <Text fontSize={{ base: "0.8em", md: "1em" }} mt="1em">
+                <Text fontSize="1em" mt="1em">
                   Cautions:
                 </Text>
                 <Wrap gap={2} wrap="wrap">
@@ -145,7 +142,6 @@ export const RecipePage = ({ item, clickFn }) => {
                       key={caution}
                       bg="lightpink"
                       _dark={{ color: "black" }}
-                      fontSize={{ base: "0.3em", md: "0.5em" }}
                     >
                       {caution}
                     </RecipeTag>
@@ -153,7 +149,7 @@ export const RecipePage = ({ item, clickFn }) => {
                 </Wrap>
 
                 <Text
-                  fontSize={{ base: "0.8em", md: "1em" }}
+                  fontSize="1em"
                   lineHeight={1.1}
                   mt="1em"
                 >
@@ -166,6 +162,23 @@ export const RecipePage = ({ item, clickFn }) => {
           </Stack>
         </Stack>
       </Card.Body>
+      <Button
+              position={{ base: "static", sm: "absolute" }}
+              bottom="0"
+              left="0"
+              m={{ base: "0", sm: "4" }}
+              onClick={() => {
+                clickFn(null);
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Back to overview
+            </Button>
     </Card.Root>
   );
+};
+
 };
