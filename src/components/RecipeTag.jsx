@@ -5,7 +5,7 @@ export const RecipeTag = ({ children, ...props }) => {
     <Tag.Root
       p={{ base: 0.5, md: 1 }}
       variant="solid"
-      color="gray"
+      color="black"
       fontWeight="bold"
       textTransform="uppercase"
       {...props}
