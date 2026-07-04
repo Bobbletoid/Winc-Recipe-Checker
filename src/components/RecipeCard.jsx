@@ -52,9 +52,9 @@ export const RecipeCard = ({ item, clickFn }) => {
         <Stack align="center" textAlign="center" gap={2}>
           <Text
             fontWeight="bold"
-            size={{ base: "sm", md: "md" }}
+            fontSize={{ base: "sm", md: "md" }}
             color="gray"
-            alignText="center"
+            textAlign="center"
             _dark={{ color: "black" }}
           >
             {item.mealType?.join(", ")?.toUpperCase()}
@@ -62,7 +62,7 @@ export const RecipeCard = ({ item, clickFn }) => {
 
           <Heading
             fontWeight="bold"
-            size={{ base: "md", md: "xl" }}
+            fontSize={{ base: "md", md: "xl" }}
             color="black"
           >
             {item.label}
@@ -73,7 +73,7 @@ export const RecipeCard = ({ item, clickFn }) => {
               <RecipeTag
                 bg="green.300"
                 _dark={{ color: "black" }}
-                size={{ base: "sm", md: "md" }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 Vegan
               </RecipeTag>
@@ -83,7 +83,7 @@ export const RecipeCard = ({ item, clickFn }) => {
               <RecipeTag
                 bg="green.300"
                 _dark={{ color: "black" }}
-                size={{ base: "sm", md: "md" }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 Vegetarian
               </RecipeTag>
@@ -96,18 +96,18 @@ export const RecipeCard = ({ item, clickFn }) => {
                 key={healthLabel}
                 bg="purple.300"
                 _dark={{ color: "black" }}
-                size={{ base: "sm", md: "md" }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 {healthLabel}
               </RecipeTag>
             ))}
           </Wrap>
 
-          <Text color="gray" alignText="center" _dark={{ color: "black" }}>
+          <Text color="gray" textAlign="center" _dark={{ color: "black" }}>
             Dish: <Strong>{dish}</Strong>
           </Text>
 
-          <Text color="gray" alignText="center" _dark={{ color: "black" }}>
+          <Text color="gray" textAlign="center" _dark={{ color: "black" }}>
             Cautions:
           </Text>
           <Flex gap={2} wrap="wrap">
@@ -116,7 +116,7 @@ export const RecipeCard = ({ item, clickFn }) => {
                 key={caution}
                 bg="lightpink"
                 _dark={{ color: "black" }}
-                size={{ base: "sm", md: "md" }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 {caution}
               </RecipeTag>
