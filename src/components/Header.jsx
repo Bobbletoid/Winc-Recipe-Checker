@@ -2,8 +2,6 @@ import {
   Box,
   Flex,
   Heading,
-  HStack,
-  Button,
   Spacer,
   Container,
 } from "@chakra-ui/react";
@@ -21,22 +19,16 @@ export const Header = ({ onHome }) => {
       shadow="sm"
     >
       <Container maxW="7xl">
-        <Flex h={16} align="center" px={2}>
-          <Heading size="md">Winc Recipe Checker</Heading>
+        <Flex h={16} align="center">
+          <Heading
+            fontSize="md"
+            onClick={onHome}
+            cursor="pointer"
+          >
+            Winc Recipe Checker
+          </Heading>
 
           <Spacer />
-
-          <HStack spacing={6}>
-            <Button
-              variant="ghost"
-              color="white"
-              _hover={{ color: "black" }}
-              _dark={{ _hover: { color: "white" } }}
-              onClick={onHome}
-            >
-              Home
-            </Button>
-          </HStack>
 
           <ColorModeToggle />
         </Flex>
