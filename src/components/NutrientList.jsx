@@ -24,12 +24,17 @@ export const NutrientList = ({ totalNutrients }) => {
   return (
     <Wrap gap={2} align="start">
       {nutrients.map((n) => (
-        <Stack key={n.key} spacing={0} color="gray.500">
-          <Text fontSize="0.8em" lineHeight="1">
+        <Stack
+          key={n.key}
+          gap="0"
+          color="gray.600"
+          _dark={{ color: "gainsboro" }}
+        >
+          <Text fontSize="1em" lineHeight="1.1">
             {n.value}
           </Text>
 
-          <Text fontSize="0.8em" lineHeight="1">
+          <Text fontSize="1.1em" lineHeight="1.1">
             {n.label}
           </Text>
         </Stack>
