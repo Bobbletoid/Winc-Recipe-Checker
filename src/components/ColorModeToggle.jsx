@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Group,
+  MenuRoot,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  IconButton
+  } from "@chakra-ui/react";
 import { useTheme } from "next-themes";
 
 export function ColorModeToggle() {
@@ -7,76 +16,89 @@ export function ColorModeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // This code runs once, right after the component is shown in the browser
-    setMounted(true); // Set the mounted useState value
+    setMounted(true);
   }, []);
 
-  // Pick theme if available, otherwise use resolvedTheme
-  const current = theme ?? resolvedTheme;
+ const current = theme ?? resolvedTheme;
 
-  // Helper function, returns true if the button's mode matches current theme
   const isActive = (mode) => {
     return current === mode;
   };
 
-  // If the component is not yet mounted in the browser, don't show anything (return nothing instead of UI).
   if (!mounted) return null;
 
+  const HamburgerIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <line x1="4" y1="12" x2="20" y2="12"></line>
+      <line x1="4" y1="6" x2="20" y2="6"></line>
+      <line x1="4" y1="18" x2="20" y2="18"></line>
+    </svg>
+  );
+
   return (
-    <ButtonGroup isAttached size="sm" aria-label="Theme toggle">
-      <Button
-        onClick={() => setTheme("system")}
-        color={isActive("system") ? undefined : "white"}
-        variant={isActive("system") ? "solid" : "ghost"}
-        _hover={
-          isActive("system")
-            ? undefined
-            : {
-                _light: { color: "black" }, // in light mode
-                _dark: { color: "white" }, // in dark mode
-              }
-        }
+    <>
+      <Group 
+        attached 
+        size="sm" 
+        aria-label="Theme toggle" 
+        display={{ base: "none", md: "inline-flex" }}
       >
-        System
-      </Button>
-      <Button
-        onClick={() => setTheme("light")}
-        color={isActive("light") ? undefined : "white"}
-        variant={
-          isActive("light")
-            ? "solid" // if the light theme is active
-            : "ghost" // otherwise
-        }
-        _hover={
-          isActive("light")
-            ? undefined
-            : {
-                _light: { color: "black" }, // in light mode
-                _dark: { color: "white" }, // in dark mode
-              }
-        }
-      >
-        Light
-      </Button>
-      <Button
-        onClick={() => setTheme("dark")}
-        color={isActive("dark") ? undefined : "white"}
-        variant={
-          isActive("dark")
-            ? "solid" // if the dark theme is active
-            : "ghost" // otherwise
-        }
-        _hover={
-          isActive("dark")
-            ? undefined
-            : {
-                _light: { color: "black" }, // in light mode
-                _dark: { color: "white" }, // in dark mode
-              }
-        }
-      >
-        Dark
-      </Button>
-    </ButtonGroup>
+        <Button
+          onClick={() => setTheme("system")}
+          variant={isActive("system") ? "solid" : "ghost"}
+        >
+          System
+        </Button>
+        <Button
+          onClick={() => setTheme("light")}
+          variant={isActive("light") ? "solid" : "ghost"}
+        >
+          Light
+        </Button>
+        <Button
+          onClick={() => setTheme("dark")}
+          variant={isActive("dark") ? "solid" : "ghost"}
+        >
+          Dark
+        </Button>
+      </Group>
+
+      <Box display={{ base: "block", md: "none" }}>
+        <MenuRoot>
+          <MenuTrigger asChild>
+            <IconButton
+              aria-label="Toggle theme menu"
+              variant="ghost"
+              size="sm"
+            >
+              <HamburgerIcon />
+            </IconButton>
+          </MenuTrigger>
+          <MenuContent>
+            <MenuItem 
+              value="system"
+              onClick={() => setTheme("system")}
+              fontWeight={isActive("system") ? "bold" : "normal"}
+            >
+              System {isActive("system") && "✓"}
+            </MenuItem>
+            <MenuItem 
+              value="light"
+              onClick={() => setTheme("light")}
+              fontWeight={isActive("light") ? "bold" : "normal"}
+            >
+              Light {isActive("light") && "✓"}
+            </MenuItem>
+            <MenuItem 
+              value="dark"
+              onClick={() => setTheme("dark")}
+              fontWeight={isActive("dark") ? "bold" : "normal"}
+            >
+              Dark {isActive("dark") && "✓"}
+            </MenuItem>
+          </MenuContent>
+        </MenuRoot>
+      </Box>
+    </>
   );
 }
